@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Custom Forms</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg,#1d2b64,#f8cdda);
+      padding: 40px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .box {
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      color: white;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0; transform: translateY(20px);}
+      to {opacity:1; transform: translateY(0);}
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    /* 🔥 Select */
+    .custom-select {
+      background: transparent;
+      color: rgb(16, 15, 15);
+      border: none;
+      border-bottom: 2px solid #ccc;
+    }
+
+    .custom-select:focus {
+      border-bottom: 2px solid #ffd369;
+      box-shadow: none;
+    }
+
+    /* 🔥 File Upload */
+    .custom-file-label {
+      background: transparent;
+      border: 1px dashed #ccc;
+      color: #ccc;
+      transition: 0.3s;
+    }
+
+    .custom-file-input:focus ~ .custom-file-label {
+      border-color: #ffd369;
+      color: #ffd369;
+    }
+
+    /* 🔥 Checkbox & Radio */
+    .custom-control-input:checked ~ .custom-control-label::before {
+      background-color: #ffd369;
+      border-color: #ffd369;
+    }
+
+    .custom-control-label {
+      transition: 0.3s;
+    }
+
+    .custom-control-input:checked ~ .custom-control-label {
+      color: #ffd369;
+    }
+
+    /* 🔥 Switch */
+    .custom-switch .custom-control-input:checked ~ .custom-control-label::before {
+      background-color: #ff6a00;
+    }
+
+    /* 🔥 Range */
+    .custom-range::-webkit-slider-thumb {
+      background: #ffd369;
+    }
+
+    .range-value {
+      font-weight: bold;
+      color: #ffd369;
+    }
+
+    /* 🔥 Button */
+    .btn-custom {
+      background: linear-gradient(45deg,#ff6a00,#ee0979);
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h2>Custom Forms</h2>
+
+  <form>
+
+    <!-- Select -->
+    <div class="form-group">
+      <label>Choose Course</label>
+      <select class="custom-select">
+        <option selected>Select option</option>
+        <option>BCA</option>
+        <option>BSc</option>
+        <option>BCom</option>
+      </select>
+    </div>
+
+    <!-- File -->
+    <div class="form-group">
+      <label>Upload File</label>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="fileInput">
+        <label class="custom-file-label" id="fileLabel">Choose file</label>
+      </div>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="c1">
+        <label class="custom-control-label" for="c1">Accept Terms</label>
+      </div>
+    </div>
+
+    <!-- Radio -->
+    <div class="form-group">
+      <div class="custom-control custom-radio">
+        <input type="radio" id="r1" name="r" class="custom-control-input">
+        <label class="custom-control-label" for="r1">Option 1</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="r2" name="r" class="custom-control-input">
+        <label class="custom-control-label" for="r2">Option 2</label>
+      </div>
+    </div>
+
+    <!-- Switch -->
+    <div class="form-group">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="s1">
+        <label class="custom-control-label" for="s1">Enable Feature</label>
+      </div>
+    </div>
+
+    <!-- Range -->
+    <div class="form-group">
+      <label>Range: <span class="range-value" id="rangeValue">50</span></label>
+      <input type="range" class="custom-range" min="0" max="100" value="50" id="rangeInput">
+    </div>
+
+    <!-- Button -->
+    <button class="btn btn-custom btn-block">Submit</button>
+
+  </form>
+
+</div>
+
+<script>
+  // File name show
+  document.getElementById("fileInput").addEventListener("change", function(){
+    document.getElementById("fileLabel").innerText = this.files[0].name;
+  });
+
+  // Range value update
+  let range = document.getElementById("rangeInput");
+  let value = document.getElementById("rangeValue");
+
+  range.oninput = function() {
+    value.innerText = this.value;
+  }
+</script>
+
+</body>
+</html>
